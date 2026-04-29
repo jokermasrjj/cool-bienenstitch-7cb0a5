@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مريم فوزي - حبي الأول والأخير</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #1a0a2e 0%, #4a1a6b 50%, #1a0a2e 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Floating Hearts Background */
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            animation: float-up linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff6b9d, #c44569, #f8b500, #ff6b9d);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 3s ease infinite;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(255, 107, 157, 0.5);
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero .subtitle {
+            font-size: 1.8rem;
+            color: #ff6b9d;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero .love-quote {
+            font-size: 1.3rem;
+            max-width: 600px;
+            line-height: 2;
+            color: #e0e0e0;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 107, 157, 0.2);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            animation: bounce 2s infinite;
+            font-size: 2rem;
+            color: #ff6b9d;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        /* Countdown Section */
+        .countdown-section {
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .countdown-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #ff6b9d;
+        }
+
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .countdown-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 107, 157, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            min-width: 120px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 157, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(255, 107, 157, 0.6); }
+        }
+
+        .countdown-box .number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #ff6b9d;
+            display: block;
+        }
+
+        .countdown-box .label {
+            font-size: 1rem;
+            color: #ccc;
+            margin-top: 0.5rem;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 5rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .gallery-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #ff6b9d;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            aspect-ratio: 1;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 2rem 1rem 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-item .overlay p {
+            font-size: 1.1rem;
+            color: #ff6b9d;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            padding: 5rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #ff6b9d;
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #ff6b9d, #c44569);
+            transform: translateX(50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50%;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 50%;
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 107, 157, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 0 2rem;
+            max-width: 350px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 10px solid transparent;
+            border-left-color: rgba(255, 107, 157, 0.3);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 10px solid transparent;
+            border-right-color: rgba(255, 107, 157, 0.3);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            right: 50%;
+            top: 50%;
+            transform: translate(50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: #ff6b9d;
+            border-radius: 50%;
+            border: 4px solid #1a0a2e;
+            box-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
+        }
+
+        .timeline-date {
+            font-size: 1.2rem;
+            color: #ff6b9d;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #e0e0e0;
+        }
+
+        /* Love Letter Section */
+        .love-letter {
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .love-letter h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #ff6b9d;
+        }
+
+        .letter-content {
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 107, 157, 0.3);
+            border-radius: 30px;
+            padding: 3rem;
+            font-size: 1.2rem;
+            line-height: 2.2;
+            color: #f0f0f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .letter-content::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            font-size: 8rem;
+            color: rgba(255, 107, 157, 0.2);
+            font-family: serif;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid rgba(255, 107, 157, 0.2);
+        }
+
+        .footer p {
+            font-size: 1.5rem;
+            color: #ff6b9d;
+            font-weight: 700;
+        }
+
+        .footer .heart-beat {
+            display: inline-block;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .countdown-container {
+                gap: 1rem;
+            }
+
+            .countdown-box {
+                min-width: 80px;
+                padding: 1rem;
+            }
+
+            .countdown-box .number {
+                font-size: 2rem;
+            }
+
+            .timeline::before {
+                right: 20px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                padding-right: 50px;
+                padding-left: 0;
+                justify-content: flex-start;
+            }
+
+            .timeline-dot {
+                right: 20px;
+                transform: translate(50%, -50%);
+            }
+
+            .timeline-content {
+                margin: 0;
+                max-width: 100%;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content::after,
+            .timeline-item:nth-child(even) .timeline-content::after {
+                left: -10px;
+                right: auto;
+                border: 10px solid transparent;
+                border-right-color: rgba(255, 107, 157, 0.3);
+                border-left-color: transparent;
+            }
+        }
+
+        /* Fade In Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Hearts -->
+    <div class="hearts-container" id="hearts"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>مريم فوزي</h1>
+        <p class="subtitle">حبي الأول والأخير</p>
+        <div class="love-quote">
+            في عيونك لقيت الدنيا، وفي ضحكتك لقيت السعادة، وفي حضنك لقيت البيت. 
+            أنتِ الحياة اللي كنت باحث عنها، والروح اللي اكتملت بيها.
+        </div>
+        <div class="scroll-indicator">❤️</div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section class="countdown-section fade-in">
+        <h2>⏰ العد التنازلي لعيد ميلاد مريم</h2>
+        <div class="countdown-container">
+            <div class="countdown-box">
+                <span class="number" id="days">00</span>
+                <span class="label">يوم</span>
+            </div>
+            <div class="countdown-box">
+                <span class="number" id="hours">00</span>
+                <span class="label">ساعة</span>
+            </div>
+            <div class="countdown-box">
+                <span class="number" id="minutes">00</span>
+                <span class="label">دقيقة</span>
+            </div>
+            <div class="countdown-box">
+                <span class="number" id="seconds">00</span>
+                <span class="label">ثانية</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section fade-in">
+        <h2>📸 ذكرياتنا الحلوة</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="images/photo1.jpg" alt="ذكرى جميلة">
+                <div class="overlay"><p>أجمل لحظة معاكي</p></div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/photo2.jpg" alt="ذكرى جميلة">
+                <div class="overlay"><p>ضحكتك سر سعادتي</p></div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/photo3.jpg" alt="ذكرى جميلة">
+                <div class="overlay"><p>في كل مكان معاكي حلو</p></div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/photo4.jpg" alt="ذكرى جميلة">
+                <div class="overlay"><p>أنتِ الحياة</p></div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/photo5.jpg" alt="ذكرى جميلة">
+                <div class="overlay"><p>عيونك أجمل شيء</p></div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/photo6.jpg" alt="ذكرى جميلة">
+                <div class="overlay"><p>معاكي كل يوم عيد</p></div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/photo7.jpg" alt="ذكرى جميلة">
+                <div class="overlay"><p>حبيبتي وروحي</p></div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/photo8.jpg" alt="ذكرى جميلة">
+                <div class="overlay"><p>أجمل صورة مع أجمل بنت</p></div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/photo9.jpg" alt="ذكرى جميلة">
+                <div class="overlay"><p>وردة من وردك</p></div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/photo10.jpg" alt="ذكرى جميلة">
+                <div class="overlay"><p>جمالك يفوق الوصف</p></div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/photo11.jpg" alt="ذكرى جميلة">
+                <div class="overlay"><p>لحظات لا تُنسى</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section fade-in">
+        <h2>💕 رحلة حبنا</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">30 يناير 2022</div>
+                    <div class="timeline-text">
+                        اليوم اللي اتعرفنا فيه... يوم ما شوفتك لأول مرة وعرفت إنك أنتِ الحياة اللي كنت بدور عليها.
+                    </div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">أول خروجة</div>
+                    <div class="timeline-text">
+                        أول مرة نخرج سوا... كنتِ متوترة وأنا كنت أغمى من جمالك. من يومها وكل خروجة معاكي أجمل من اللي قبلها.
+                    </div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">أول هدية</div>
+                    <div class="timeline-text">
+                        لما جبتلك وردة لأول مرة وشوفت فرحتك... عرفت إن أبسط الحاجات معاكي بتبقى أغلى كنوز الدنيا.
+                    </div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">كل يوم معاكي</div>
+                    <div class="timeline-text">
+                        كل يوم بيعدي معاكي بيكون أحلى من اللي قبله. أنتِ السعادة، أنتِ الأمان، أنتِ كل حاجة حلوة في الدنيا.
+                    </div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">18 أغسطس</div>
+                    <div class="timeline-text">
+                        عيد ميلادك... اليوم اللي جت فيه النعمة دي للدنيا. يوم ميلاد أجمل بنت في الكون. كل سنة وأنتِ طيبة يا حياتي.
+                    </div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Love Letter Section -->
+    <section class="love-letter fade-in">
+        <h2>💌 رسالة من قلبي</h2>
+        <div class="letter-content">
+            مريم حبيبتي،<br><br>
+            من يوم ما دخلتي حياتي في 30 يناير 2022، الدنيا اتغيرت خالص. بقيت أشوف الدنيا بعيون تانية، 
+            أجمل وأحلى. ضحكتك بقت سر سعادتي، وعيونك بقت البيت اللي بيريحني.<br><br>
+            أنا مش بس بحبك، أنا عايش عشانك. كل يوم بيفوت بيكون أحلى من اللي قبله لأنك فيه. 
+            أنتِ مش بس حبيبتي، أنتِ صحبتي، أختي، أمي، وكل حاجة حلوة في الدنيا.<br><br>
+            وعدك إني هفضل جنبك في كل لحظة، هفرحك، هحلم معاكي، وهعملك أحلى ذكريات. 
+            أنتِ تستحقي كل خير في الدنيا، وأنا هعمل المستحيل عشان أسعدك.<br><br>
+            بحبك أكتر من أي كلام ممكن يعبر، و أكتر من أي حد تخيله.<br><br>
+            مع كل دقة قلبي بقول: بحبك يا مريم ❤️
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>صنع بحب <span class="heart-beat">❤️</span> لمريم فوزي</p>
+        <p style="margin-top: 1rem; font-size: 1rem; color: #888;">من يوم التعارف: 30 يناير 2022</p>
+    </footer>
+
+    <script>
+        // Create Floating Hearts
+        function createHearts() {
+            const container = document.getElementById('hearts');
+            const hearts = ['❤️', '💖', '💕', '💗', '💓', '💝'];
+
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                container.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 6000);
+            }, 300);
+        }
+
+        // Countdown Timer
+        function updateCountdown() {
+            const now = new Date();
+            const currentYear = now.getFullYear();
+            let birthday = new Date(currentYear, 7, 18); // August is month 7 (0-indexed)
+
+            if (now > birthday) {
+                birthday = new Date(currentYear + 1, 7, 18);
+            }
+
+            const diff = birthday - now;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        // Fade In Animation on Scroll
+        function handleScroll() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.8) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+
+        // Initialize
+        createHearts();
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('load', handleScroll);
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
